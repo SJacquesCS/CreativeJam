@@ -312,8 +312,8 @@ MonoBehaviour:
     m_Bits: 256
   mShot: {fileID: 1422982271285172, guid: d80de289a2768914f8b519a2684a9ac7, type: 2}
   mShotSpawns:
-  - {fileID: 4440536106866342}
   - {fileID: 4604905991283088}
+  - {fileID: 4440536106866342}
   mFireRate: 1
 --- !u!212 &212330705777257944
 SpriteRenderer:
