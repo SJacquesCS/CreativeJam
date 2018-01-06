@@ -9,6 +9,7 @@ public class Torch : MonoBehaviour {
     private void OnTriggerEnter2D(Collider2D collision)
     {
         GetComponent<Animator>().enabled = true;
+        transform.GetChild(0).GetComponent<Light>().enabled = true;
 
         mDoor.GetComponent<Door>().Open();
     }
