@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WizardMovement : MonoBehaviour {
+public class WizardController : MonoBehaviour {
 	
     public float mWalkSpeed;
     public float mRunSpeed;
@@ -15,11 +15,20 @@ public class WizardMovement : MonoBehaviour {
     bool mWalking;
     bool mGrounded;
     bool mFalling;
+	bool mFiring;
+
+	bool mFacingRight = false;
 	
 	Animator mAnimator;
 	Rigidbody2D mRigidBody2D;
     Transform mSpriteChild;
     float kGroundCheckRadius = 0.1f;
+
+	public GameObject mShot;
+	public Transform[] mShotSpawns;
+	public float mFireRate;
+
+	float mNextFire;
 
 	void Awake ()
 	{
@@ -32,6 +41,9 @@ public class WizardMovement : MonoBehaviour {
 	{
 		CheckFalling ();
 		CheckGrounded ();
+
+		if (Input.GetKey (KeyCode.J) && Time.time > mNextFire)
+			StartCoroutine ("Fire");
 	}
 		
 	void FixedUpdate ()
@@ -63,6 +75,7 @@ public class WizardMovement : MonoBehaviour {
 		if (Input.GetKey (KeyCode.A))
 		{
 			FaceDirection ((Vector2)directionRight);
+			mFacingRight = false;
 			transform.position -= directionLeft * movementSpeed * Time.deltaTime;
 			mWalking = true;
 		}
@@ -70,6 +83,7 @@ public class WizardMovement : MonoBehaviour {
 		if (Input.GetKey (KeyCode.D))
 		{
 			FaceDirection ((Vector2)directionRight);
+			mFacingRight = true;
 			transform.position += directionRight * movementSpeed * Time.deltaTime;
 			mWalking = true;
 		}
@@ -128,4 +142,28 @@ public class WizardMovement : MonoBehaviour {
 
 	}
 
+	IEnumerator Fire()
+	{
+		GameObject projectile;
+		mNextFire = Time.time + mFireRate;
+
+		mFiring = true;
+		mAnimator.SetBool("IsFiring", mFiring);
+
+		yield return new WaitForSeconds(0.50f);
+
+		if (mFacingRight)
+			projectile = Instantiate(mShot, mShotSpawns[0].position, mShotSpawns[0].rotation) as GameObject;
+		else
+			projectile = Instantiate(mShot, mShotSpawns[1].position, mShotSpawns[1].rotation) as GameObject;
+			
+		if (projectile)
+			projectile.GetComponent<ProjectileController>().SendProjectile(mFacingRight);
+
+		Destroy (projectile, 2f);
+
+		yield return new WaitForSeconds(0.1f);
+		mFiring = false;
+		mAnimator.SetBool("IsFiring", mFiring);
+	}
 }
