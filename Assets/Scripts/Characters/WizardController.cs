@@ -16,6 +16,7 @@ public class WizardController : MonoBehaviour {
     bool mGrounded;
     bool mFalling;
 	bool mFiring;
+	bool mDead = false;
 
 	bool mFacingRight = false;
 	
@@ -27,7 +28,6 @@ public class WizardController : MonoBehaviour {
 	public GameObject mShot;
 	public Transform[] mShotSpawns;
 	public float mFireRate;
-
 	float mNextFire;
 
 	void Awake ()
@@ -48,7 +48,8 @@ public class WizardController : MonoBehaviour {
 		
 	void FixedUpdate ()
 	{
-		Move ();
+		if (!mDead)
+			Move ();
 		
 		mAnimator.SetBool("IsWalking", mWalking);
         mAnimator.SetBool("IsRunning", mRunning);
@@ -135,6 +136,8 @@ public class WizardController : MonoBehaviour {
 	public void Death ()
 	{
 		mAnimator.SetTrigger ("IsDead");
+		mDead = true;
+		Destroy (gameObject, 2f);
 	}
 
 	void Interact()
