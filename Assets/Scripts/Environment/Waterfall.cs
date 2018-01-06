@@ -9,6 +9,8 @@ public class Waterfall : MonoBehaviour {
     public void Die()
     {
         mDying = true;
+
+        StartCoroutine(Vanish());
     }
 
     void Update()
