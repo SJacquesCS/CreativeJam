@@ -35,6 +35,13 @@ public class WizardController : MonoBehaviour {
 		mAnimator = GetComponentInChildren<Animator>();
         mRigidBody2D = GetComponent<Rigidbody2D>();
         mSpriteChild = transform.Find ("WizardSprite");
+
+		GameObject[] patrolColliders = GameObject.FindGameObjectsWithTag ("Patrol Collider");
+
+		foreach (GameObject col in patrolColliders)
+		{
+			Physics2D.IgnoreCollision(col.GetComponent<Collider2D>(), GetComponent<Collider2D>());
+		}
 	}
 
 	void Update()

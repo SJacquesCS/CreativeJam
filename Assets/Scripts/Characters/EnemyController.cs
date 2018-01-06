@@ -7,6 +7,7 @@ public class EnemyController : MonoBehaviour
 	public float mSpeed;
 	bool mFacingRight = true;
 	bool mWalking;
+	bool mDead = false;
 
 	Animator mAnimator;
 	Rigidbody2D mRigidBody2D;
@@ -25,8 +26,9 @@ public class EnemyController : MonoBehaviour
 			FaceDirection (new Vector2 (1f, 0f));
 		else
 			FaceDirection (new Vector2 (-1f, 0f));
-		
-		Move ();
+
+		if (!mDead)
+			Move ();
 		
 		mAnimator.SetBool("IsWalking", mWalking);
 	}
@@ -61,6 +63,10 @@ public class EnemyController : MonoBehaviour
 
 	public void Death ()
 	{
+		mDead = true;
 		mAnimator.SetTrigger ("IsDead");
+		Physics2D.IgnoreCollision(GameObject.FindGameObjectWithTag("mage").GetComponent<Collider2D>(), GetComponent<Collider2D>());
+		Physics2D.IgnoreCollision(GameObject.FindGameObjectWithTag("Fireball").GetComponent<Collider2D>(), GetComponent<Collider2D>());
+		Destroy (gameObject, 2f);
 	}
 }
