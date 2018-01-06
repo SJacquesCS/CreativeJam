@@ -19,9 +19,9 @@ public class ProjectileController : MonoBehaviour
 
 	void OnTriggerEnter2D(Collider2D other)
 	{
-		if (other.tag == "Enemy")
+		if (other.tag == "Enemy" || other.tag == "Ground")
 		{
-			Destroy (gameObject);
+			Destroy (gameObject, 0.15f);
 		}
 	}
 }
