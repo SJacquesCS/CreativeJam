@@ -16,6 +16,7 @@ public class WizardController : MonoBehaviour {
     bool mGrounded;
     bool mFalling;
 	bool mFiring;
+	bool mDead = false;
 
 	bool mFacingRight = false;
 	
@@ -27,7 +28,6 @@ public class WizardController : MonoBehaviour {
 	public GameObject mShot;
 	public Transform[] mShotSpawns;
 	public float mFireRate;
-
 	float mNextFire;
 
 	void Awake ()
@@ -35,6 +35,13 @@ public class WizardController : MonoBehaviour {
 		mAnimator = GetComponentInChildren<Animator>();
         mRigidBody2D = GetComponent<Rigidbody2D>();
         mSpriteChild = transform.Find ("WizardSprite");
+
+		GameObject[] patrolColliders = GameObject.FindGameObjectsWithTag ("Patrol Collider");
+
+		foreach (GameObject col in patrolColliders)
+		{
+			Physics2D.IgnoreCollision(col.GetComponent<Collider2D>(), GetComponent<Collider2D>());
+		}
 	}
 
 	void Update()
@@ -48,7 +55,8 @@ public class WizardController : MonoBehaviour {
 		
 	void FixedUpdate ()
 	{
-		Move ();
+		if (!mDead)
+			Move ();
 		
 		mAnimator.SetBool("IsWalking", mWalking);
         mAnimator.SetBool("IsRunning", mRunning);
@@ -135,6 +143,8 @@ public class WizardController : MonoBehaviour {
 	public void Death ()
 	{
 		mAnimator.SetTrigger ("IsDead");
+		mDead = true;
+		Destroy (gameObject, 2f);
 	}
 
 	void Interact()

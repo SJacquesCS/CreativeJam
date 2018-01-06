@@ -22,6 +22,8 @@ public class ProjectileController : MonoBehaviour
 		if (other.tag == "Enemy" || other.tag == "Ground")
 		{
 			Destroy (gameObject, 0.15f);
+			if (other.tag == "Enemy")
+				other.gameObject.GetComponent<EnemyController> ().Death ();
 		}
 	}
 }
