@@ -8,8 +8,7 @@ public class WizardMovement : MonoBehaviour {
     public float mRunSpeed;
     public float mJumpForce;
 
-	public Transform mTopLeftPosition;
-	public Transform mBottomRightPosition;
+	public Transform mGroundCheck;
 	public LayerMask mGroundLayer;
 
     bool mRunning;
@@ -20,6 +19,7 @@ public class WizardMovement : MonoBehaviour {
 	Animator mAnimator;
 	Rigidbody2D mRigidBody2D;
     Transform mSpriteChild;
+    float kGroundCheckRadius = 0.1f;
 
 	void Awake ()
 	{
@@ -104,8 +104,28 @@ public class WizardMovement : MonoBehaviour {
 
 	void CheckGrounded()
 	{
-		mGrounded = Physics2D.OverlapArea(mTopLeftPosition.position, mBottomRightPosition.position, mGroundLayer); 
+		Collider2D[] colliders = Physics2D.OverlapCircleAll(mGroundCheck.position, kGroundCheckRadius, mGroundLayer);
+        foreach(Collider2D col in colliders)
+        {
+            if(col.gameObject != gameObject)
+            {
+                mGrounded = true;
+				mAnimator.SetBool("IsGrounded", mGrounded);
+                return;
+            }
+        }
+		mGrounded = false;
 		mAnimator.SetBool("IsGrounded", mGrounded);
+	}
+
+	public void Death ()
+	{
+		mAnimator.SetTrigger ("IsDead");
+	}
+
+	void Interact()
+	{
+
 	}
 
 }
