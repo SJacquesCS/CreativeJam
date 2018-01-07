@@ -10,6 +10,7 @@ TagManager:
   - Patrol Collider
   - Fireball
   - Waterfall
+  - Projectile
   layers:
   - Default
   - TransparentFX
