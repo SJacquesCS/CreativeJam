@@ -6,17 +6,15 @@ public class EnemyController : MonoBehaviour
 {
 	public float mSpeed;
 	bool mFacingRight = true;
-	bool mWalking;
+	bool mWalking = true;
 	bool mDead = false;
 
 	Animator mAnimator;
-	Rigidbody2D mRigidBody2D;
 	Transform mSpriteChild;
 
 	void Awake ()
 	{
 		mAnimator = GetComponentInChildren<Animator>();
-		mRigidBody2D = GetComponent<Rigidbody2D>();
 		mSpriteChild = GetComponentInChildren<SpriteRenderer>().transform;
 	}
 

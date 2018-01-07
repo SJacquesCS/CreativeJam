@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: 964cc753909bcca4f99b5395a33210f5
-timeCreated: 1515216554
+guid: 526f57a0c970c4f428fba466bd0892d0
+timeCreated: 1515275769
 licenseType: Free
 TrueTypeFontImporter:
   serializedVersion: 4
@@ -9,9 +9,9 @@ TrueTypeFontImporter:
   characterSpacing: 0
   characterPadding: 1
   includeFontData: 1
-  fontName: BlackChancery
+  fontName: Minnesota Winter
   fontNames:
-  - BlackChancery
+  - Minnesota Winter
   fallbackFontReferences: []
   customCharacters: 
   fontRenderingMode: 0
