@@ -151,7 +151,7 @@ public class EnemyController : MonoBehaviour
 		GameObject.Find ("DialogueText").GetComponent<Text> ().text = "Hoho… On dirait que j’ai parlé trop vite… Il nous reste un dernier combat apparemment !";
 		audioSources[1].Play();
 		mHealthPoints = mBossHP;
-		yield return new WaitForSeconds (1f);
+		yield return new WaitForSeconds (5f);
 		GameObject.Find ("DialogueText").GetComponent<Text> ().text = "";
 		mDead = false;
 	}
