@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class FireballController : MonoBehaviour
 {
@@ -121,7 +122,10 @@ public class FireballController : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Waterfall")
+        {
             mIsDead = true;
+            StartCoroutine(Vanish());
+        }
     }
 
     public bool checkShrunk()
@@ -129,4 +133,10 @@ public class FireballController : MonoBehaviour
         return mIsShrunk;
     }
 
+    IEnumerator Vanish()
+    {
+        yield return new WaitForSeconds(1.5f);
+
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
 }
