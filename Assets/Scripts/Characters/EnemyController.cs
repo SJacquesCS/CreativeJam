@@ -42,22 +42,25 @@ public class EnemyController : MonoBehaviour
 		mSpriteChild.rotation = rotation3D;
 	}
 
-	void OnCollisionEnter2D(Collision2D col)
-	{
-		if (col.gameObject.tag == "Patrol Collider" || col.gameObject.tag == "mage")
-		{
-			if (col.gameObject.tag == "mage")
-			{
-				col.gameObject.GetComponent<WizardController> ().Death ();
-			}
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "mage")
+        {
+            collision.gameObject.GetComponent<WizardController>().Death();
+        }
+    }
 
+    void OnTriggerEnter2D(Collider2D collision)
+	{
+		if (collision.gameObject.tag == "Patrol Collider")
+		{
 			mSpeed *= -1f;
 			if (mFacingRight)
 				mFacingRight = false;
 			else
 				mFacingRight = true;
 		}
-	}
+    }
 
 	public void Death ()
 	{
