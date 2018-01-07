@@ -32,8 +32,11 @@ public class WizardController : MonoBehaviour {
     private bool mFalling;
     private bool mFiring;
 
+	private AudioSource[] mAudioSources;
+
     void Awake ()
 	{
+		mAudioSources = GetComponents<AudioSource> ();
 		mAnimator = GetComponentInChildren<Animator>();
         mRigidBody2D = GetComponent<Rigidbody2D>();
         mSpriteChild = transform.Find ("WizardSprite");
@@ -157,6 +160,7 @@ public class WizardController : MonoBehaviour {
             mInvisFrames = 1;
             mHealth--;
             GameObject.Find("GameController").GetComponent<GameController>().SetHealth(mHealth);
+			mAudioSources [1].Play ();
 
             Debug.Log(mHealth);
 
@@ -184,7 +188,7 @@ public class WizardController : MonoBehaviour {
     {
         if ((Input.GetKeyDown(KeyCode.L) && Input.GetKey(KeyCode.Mouse2)) || (Input.GetKey(KeyCode.L) && Input.GetKeyDown(KeyCode.Mouse2)))
         {
-			GetComponent<AudioSource> ().Play ();
+			mAudioSources [0].Play ();
             Debug.Log("SWAP");
             Vector2 fireballPos = mFireball.transform.position;
             mFireball.transform.position = transform.position;
@@ -207,6 +211,8 @@ public class WizardController : MonoBehaviour {
 		else
 			projectile = Instantiate(mShot, mShotSpawns[1].position, mShotSpawns[1].rotation) as GameObject;
 			
+		mAudioSources [2].Play ();
+
 		if (projectile)
 			projectile.GetComponent<ProjectileController>().SendProjectile(mFacingRight);
 

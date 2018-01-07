@@ -15,6 +15,7 @@ public class FinalDoor : MonoBehaviour {
 
     public void UnlockDoor()
     {
+		GetComponent<AudioSource> ().Play ();
         mIsUnlocked = true;
     }
 }
