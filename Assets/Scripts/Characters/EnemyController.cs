@@ -104,6 +104,9 @@ public class EnemyController : MonoBehaviour
 		}
 		else
 		{
+			if (mIsBoss && mBossRevived)
+				GameObject.Find ("Final Door").GetComponent<FinalDoor> ().UnlockDoor ();
+			
 			Physics2D.IgnoreCollision(GameObject.FindGameObjectWithTag("mage").GetComponent<Collider2D>(), GetComponent<Collider2D>());
 			Physics2D.IgnoreCollision(GameObject.FindGameObjectWithTag("Projectile").GetComponent<Collider2D>(), GetComponent<Collider2D>());
 			Destroy (gameObject, 2f);
