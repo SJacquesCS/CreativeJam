@@ -34,9 +34,14 @@ public class ProjectileController : MonoBehaviour
 		if (other.gameObject.tag == "Enemy" || other.gameObject.tag == "Ground")
 		{
 			Destroy (gameObject, 0.15f);
+<<<<<<< HEAD
 
 			if (other.gameObject.tag == "Enemy")
 				other.gameObject.GetComponent<EnemyController>().Death ();
+=======
+			if (other.tag == "Enemy")
+				other.gameObject.GetComponent<EnemyController>().DecrementHP ();
+>>>>>>> 5559cef110946cb32760809f43bb69ff7bfd7c20
 		}
 
         if (other.gameObject.tag == "Fireball")
