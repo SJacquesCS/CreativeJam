@@ -7,7 +7,8 @@ public class FireballController : MonoBehaviour
 	void Awake()
 	{
 		Cursor.visible = false;
-		Physics2D.IgnoreCollision(GameObject.FindGameObjectWithTag("mage").GetComponent<Collider2D>(), GetComponent<Collider2D>());
+		if (GameObject.FindGameObjectWithTag("mage"))
+			Physics2D.IgnoreCollision(GameObject.FindGameObjectWithTag("mage").GetComponent<Collider2D>(), GetComponent<Collider2D>());
 	}
 
 	void Update ()
