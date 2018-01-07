@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class GameController : MonoBehaviour
 {
-	private int mRoomCompleted = 0;
+	private int mRoomCompleted = 1;
     private int mPlayerHealth;
 
 	void Awake ()
