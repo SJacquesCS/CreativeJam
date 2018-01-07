@@ -6,11 +6,14 @@ public class Torch : MonoBehaviour {
 
     public GameObject mDoor;
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerStay2D(Collider2D collision)
     {
-        GetComponent<Animator>().enabled = true;
-        transform.GetChild(0).GetComponent<Light>().enabled = true;
+        if (Input.GetKeyDown(KeyCode.Mouse0))
+        {
+            GetComponent<Animator>().enabled = true;
+            transform.GetChild(0).GetComponent<Light>().enabled = true;
 
-        mDoor.GetComponent<Door>().Open();
+            mDoor.GetComponent<Door>().Open();
+        }
     }
 }

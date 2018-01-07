@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class FireballController : MonoBehaviour
 {
+    public float speed;
+
 	void Awake()
 	{
 		Cursor.visible = false;
@@ -18,6 +20,9 @@ public class FireballController : MonoBehaviour
 	void Move()
 	{
 		Vector3 mouselocation = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-		GetComponent<Rigidbody2D>().MovePosition(new Vector2(mouselocation.x, mouselocation.y));
-	}
+        float xDist = mouselocation.x - transform.position.x;
+        float yDist = mouselocation.y - transform.position.y;
+
+        transform.Translate(new Vector3(xDist, yDist) * Time.deltaTime * speed);
+    }
 }

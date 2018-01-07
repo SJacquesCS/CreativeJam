@@ -9,7 +9,9 @@ public class Scroll : MonoBehaviour {
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "mage")
-        mLargeScroll.GetComponent<SpriteRenderer>().enabled = true;
-        GetComponent<SpriteRenderer>().enabled = false;
+        {
+            mLargeScroll.GetComponent<SpriteRenderer>().enabled = true;
+            GetComponent<SpriteRenderer>().enabled = false;
+        }
     }
 }
