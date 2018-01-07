@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class GameController : MonoBehaviour
 {
-	private int mRoomCompleted = 1;
+	private int mRoomCompleted = 2;
     private int mPlayerHealth;
 
 	void Awake ()
@@ -39,7 +39,7 @@ public class GameController : MonoBehaviour
 
 	public void ResetRoomCounter ()
 	{
-		mRoomCompleted = 0;
+        mRoomCompleted = 2;
 	}
 
 	public void IncrementRoomCounter()
@@ -66,8 +66,8 @@ public class GameController : MonoBehaviour
 
         if (mPlayerHealth <= 0)
         {
-            mRoomCompleted = 1;
-            SwitchRoom();
+            mRoomCompleted = 5;
+            StartCoroutine(ChangeScene());
         }
 
     }

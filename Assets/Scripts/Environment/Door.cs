@@ -17,7 +17,9 @@ public class Door : MonoBehaviour {
     {
         mOpening = true;
         mDirection = direction;
-		GetComponent<AudioSource> ().Play ();
+
+        if (GetComponent<AudioSource>())
+		    GetComponent<AudioSource> ().Play ();
     }
 
     IEnumerator Vanish()
