@@ -112,7 +112,7 @@ public class EnemyController : MonoBehaviour
 			Destroy (gameObject, 2f);
 		}
 
-		if (SceneManager.GetActiveScene ().buildIndex == 2 && gameObject.name == "Knight_2")
+		if (SceneManager.GetActiveScene ().buildIndex == 3 && gameObject.name == "Knight_2")
 		{
 			GameObject.Find ("Door").GetComponent<Door> ().Open (Vector3.up);
 		}
