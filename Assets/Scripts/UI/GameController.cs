@@ -7,6 +7,7 @@ using UnityEngine;
 public class GameController : MonoBehaviour
 {
 	private int mRoomCompleted = 0;
+    private int mPlayerHealth;
 
 	void Awake ()
 	{
@@ -29,14 +30,11 @@ public class GameController : MonoBehaviour
 		}
 	}
 
-	void Update()
-	{
-
-	}
-
     void SwitchRoom()
     {
+        RenderSettings.ambientLight = Color.white;
 
+        StartCoroutine(ChangeScene());
     }
 
 	public void ResetRoomCounter ()
@@ -50,4 +48,27 @@ public class GameController : MonoBehaviour
 
         SwitchRoom();
 	}
+
+    IEnumerator ChangeScene()
+    {
+        yield return new WaitForSeconds(2);
+
+        GameObject.Find("Black").GetComponent<Blackener>().Fade();
+
+        yield return new WaitForSeconds(4);
+
+        SceneManager.LoadScene(mRoomCompleted);
+    }
+
+    public void SetHealth(int health)
+    {
+        mPlayerHealth = health;
+
+        if (mPlayerHealth <= 0)
+        {
+            mRoomCompleted = 1;
+            SwitchRoom();
+        }
+
+    }
 }
