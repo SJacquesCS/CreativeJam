@@ -19,7 +19,7 @@ public class LeverSwitch : MonoBehaviour {
 				mOtherSwitch.GetComponent<LeverSwitch>().setTriggered();
 			}
 
-            transform.Rotate(new Vector3(0, 180));
+            transform.localScale = new Vector3(-1, 1, 1);
             transform.position = new Vector3(transform.position.x + 0.75f, transform.position.y);
 
             if (mLinkedWaterfall)

@@ -57,8 +57,6 @@ public class FireballController : MonoBehaviour
                 mParticles.startSize = mParticleSize;
                 mBurst.startSize = mParticleSize;
             }
-            else
-                Destroy(gameObject);
         }
 	}
 
@@ -138,5 +136,9 @@ public class FireballController : MonoBehaviour
         yield return new WaitForSeconds(1.5f);
 
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+
+        yield return new WaitForSeconds(1.0f);
+
+        Destroy(gameObject);
     }
 }
