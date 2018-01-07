@@ -35,7 +35,7 @@ public class ProjectileController : MonoBehaviour
 		{
 			Destroy (gameObject, 0.15f);
 			if (other.tag == "Enemy")
-				other.gameObject.GetComponent<EnemyController>().Death ();
+				other.gameObject.GetComponent<EnemyController>().DecrementHP ();
 		}
 	}
 }
