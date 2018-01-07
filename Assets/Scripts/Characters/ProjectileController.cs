@@ -5,9 +5,21 @@ using UnityEngine;
 public class ProjectileController : MonoBehaviour
 {
 	public float mSpeed;
+
+    private float mParticleSize = 1f;
+    private float mLightAngle = 70f;
 	private float mDirection;
 
-	public void SendProjectile(bool facingRight)
+    private void Update()
+    {
+        mLightAngle -= 0.35f;
+        mParticleSize -= 0.005f;
+
+        transform.GetChild(0).GetComponent<Light>().spotAngle = mLightAngle;
+        transform.GetChild(1).GetComponent<ParticleSystem>().startSize = mParticleSize;
+    }
+
+    public void SendProjectile(bool facingRight)
 	{
 		if (facingRight)
 			mDirection = 1;
@@ -23,7 +35,7 @@ public class ProjectileController : MonoBehaviour
 		{
 			Destroy (gameObject, 0.15f);
 			if (other.tag == "Enemy")
-				other.gameObject.GetComponent<EnemyController> ().Death ();
+				other.gameObject.GetComponent<EnemyController>().Death ();
 		}
 	}
 }

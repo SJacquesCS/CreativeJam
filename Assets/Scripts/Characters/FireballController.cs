@@ -10,10 +10,12 @@ public class FireballController : MonoBehaviour
     public ParticleSystem mBurst;
 
     private float mDelay = 1f;
+    private bool mIsShrunk = false;
 
 	void Awake()
 	{
 		Cursor.visible = false;
+
 		if (GameObject.FindGameObjectWithTag("mage"))
 			Physics2D.IgnoreCollision(GameObject.FindGameObjectWithTag("mage").GetComponent<Collider2D>(), GetComponent<Collider2D>());
 	}
@@ -55,15 +57,24 @@ public class FireballController : MonoBehaviour
 
     void Shrink()
     {
-        if (Input.GetKey(KeyCode.Mouse1))
+        if (Input.GetKeyDown(KeyCode.Mouse1))
         {
-            transform.localScale = new Vector2(0.5f, 0.5f);
-            mParticles.startSize = 0.5f;
-        }
-        else
-        {
-            transform.localScale = new Vector2(1, 1);
-            mParticles.startSize = 1;
+            if (mIsShrunk)
+            {
+                transform.GetChild(3).transform.localScale = new Vector2(1f, 1f);
+                transform.GetComponent<CircleCollider2D>().radius = 0.4f;
+                transform.GetChild(1).GetComponent<Light>().spotAngle = 70f;
+                mParticles.startSize = 1f;
+            }
+            else
+            {
+                transform.GetChild(3).transform.localScale = new Vector2(0.5f, 0.5f);
+                transform.GetComponent<CircleCollider2D>().radius = 0.2f;
+                transform.GetChild(1).GetComponent<Light>().spotAngle = 35f;
+                mParticles.startSize = 0.5f;
+            }
+
+            mIsShrunk = !mIsShrunk;
         }
     }
 }
