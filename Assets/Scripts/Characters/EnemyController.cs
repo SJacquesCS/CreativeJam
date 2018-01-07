@@ -68,6 +68,7 @@ public class EnemyController : MonoBehaviour
 		mAnimator.SetTrigger ("IsDead");
 		Physics2D.IgnoreCollision(GameObject.FindGameObjectWithTag("mage").GetComponent<Collider2D>(), GetComponent<Collider2D>());
 		Physics2D.IgnoreCollision(GameObject.FindGameObjectWithTag("Fireball").GetComponent<Collider2D>(), GetComponent<Collider2D>());
+		Physics2D.IgnoreCollision(GameObject.FindGameObjectWithTag("Projectile").GetComponent<Collider2D>(), GetComponent<Collider2D>());
 		Destroy (gameObject, 2f);
 	}
 }
