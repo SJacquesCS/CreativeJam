@@ -8,6 +8,8 @@ public class ExitDoor : MonoBehaviour {
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+		GetComponent<AudioSource> ().Play ();
+
         if (collision.gameObject.tag == "mage")
         {
             GetComponent<Animator>().enabled = true;

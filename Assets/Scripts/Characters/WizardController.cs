@@ -171,6 +171,7 @@ public class WizardController : MonoBehaviour {
     {
         if ((Input.GetKeyDown(KeyCode.L) && Input.GetKey(KeyCode.Mouse2)) || (Input.GetKey(KeyCode.L) && Input.GetKeyDown(KeyCode.Mouse2)))
         {
+			GetComponent<AudioSource> ().Play ();
             Debug.Log("SWAP");
             Vector2 fireballPos = mFireball.transform.position;
             mFireball.transform.position = transform.position;
