@@ -148,6 +148,7 @@ public class WizardController : MonoBehaviour {
     public void Damage()
     {
         mHealth--;
+        GameObject.Find("GameController").GetComponent<GameController>().SetHealth(mHealth);
 
         if (mHealth <= 0)
             Death();

@@ -21,6 +21,6 @@ public class LongSpike : MonoBehaviour {
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.tag == "mage")
-            collision.gameObject.GetComponent<WizardController>().Death();
+            collision.gameObject.GetComponent<WizardController>().Damage();
     }
 }
