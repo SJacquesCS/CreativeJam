@@ -11,6 +11,8 @@ public class ExitDoor : MonoBehaviour {
         if (collision.gameObject.tag == "mage")
         {
             GetComponent<Animator>().enabled = true;
+
+            GameObject.Find("GameController").GetComponent<GameController>().IncrementRoomCounter();
         }
     }
 }

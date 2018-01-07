@@ -7,6 +7,6 @@ public class Spike : MonoBehaviour {
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "mage")
-            collision.gameObject.GetComponent<WizardController>().Death();
+            collision.gameObject.GetComponent<WizardController>().Damage();
     }
 }

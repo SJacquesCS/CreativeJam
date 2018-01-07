@@ -66,8 +66,8 @@ public class FireballController : MonoBehaviour
 		Vector3 mouseLocation = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         Vector2 distances = new Vector2(mouseLocation.x - transform.position.x, mouseLocation.y - transform.position.y);
 
-        if (distances.magnitude > 0.5f)
-            GetComponent<Rigidbody2D>().AddForce(distances.normalized * 0.01f);
+        if (distances.magnitude > 0.001f)
+            GetComponent<Rigidbody2D>().AddForce(distances.normalized * 0.001f * mSpeed);
 
         GetComponent<Rigidbody2D>().velocity = new Vector2(
             Mathf.Clamp(GetComponent<Rigidbody2D>().velocity.x, -5f, 5f),

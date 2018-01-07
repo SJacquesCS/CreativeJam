@@ -316,6 +316,7 @@ MonoBehaviour:
   mFireball: {fileID: 0}
   mShot: {fileID: 1422982271285172, guid: d80de289a2768914f8b519a2684a9ac7, type: 2}
   mFireRate: 1
+  mHealth: 5
 --- !u!212 &212330705777257944
 SpriteRenderer:
   m_ObjectHideFlags: 1
