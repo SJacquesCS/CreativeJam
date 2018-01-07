@@ -12,10 +12,12 @@ public class LeverSwitch : MonoBehaviour {
     {
         if (collision.gameObject.tag == "mage" && !mIsTriggered && Input.GetKeyDown(KeyCode.K))
         {
+			GetComponent<AudioSource> ().Play ();
             mIsTriggered = true;
 
-            if (mOtherSwitch)
-                mOtherSwitch.GetComponent<LeverSwitch>().setTriggered();
+			if (mOtherSwitch) {
+				mOtherSwitch.GetComponent<LeverSwitch>().setTriggered();
+			}
 
             transform.Rotate(new Vector3(0, 180));
             transform.position = new Vector3(transform.position.x + 0.75f, transform.position.y);

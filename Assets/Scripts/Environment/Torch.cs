@@ -12,6 +12,7 @@ public class Torch : MonoBehaviour {
     {
         if (Input.GetKey(KeyCode.Mouse0) && collision.gameObject.tag == "Fireball" && !mIsTriggered && !collision.gameObject.GetComponent<FireballController>().checkShrunk())
         {
+			GetComponent<AudioSource> ().Play ();
             mIsTriggered = true;
 
             GetComponent<Animator>().enabled = true;
