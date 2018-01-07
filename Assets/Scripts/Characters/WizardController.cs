@@ -55,8 +55,10 @@ public class WizardController : MonoBehaviour {
 		
 	void FixedUpdate ()
 	{
-		if (!mDead)
-			Move ();
+        if (!mDead)
+            Move();
+        else
+            transform.Rotate(Vector3.forward * 2);
 		
 		mAnimator.SetBool("IsWalking", mWalking);
         mAnimator.SetBool("IsRunning", mRunning);
@@ -143,8 +145,10 @@ public class WizardController : MonoBehaviour {
 	public void Death ()
 	{
 		mAnimator.SetTrigger ("IsDead");
+        GetComponent<Rigidbody2D>().AddForce(new Vector2(Random.Range(50, 150), 300));
+        GetComponent<Collider2D>().enabled = false;
 		mDead = true;
-		Destroy (gameObject, 2f);
+		Destroy (gameObject, 4f);
 	}
 
 	void Interact()
@@ -170,7 +174,7 @@ public class WizardController : MonoBehaviour {
 		if (projectile)
 			projectile.GetComponent<ProjectileController>().SendProjectile(mFacingRight);
 
-		Destroy (projectile, 2f);
+		Destroy (projectile, 3.5f);
 
 		yield return new WaitForSeconds(0.1f);
 		mFiring = false;
