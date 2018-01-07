@@ -40,6 +40,8 @@ public class GameController : MonoBehaviour
 	{
 
 	}
+    
+
 
     void SwitchRoom()
     {
