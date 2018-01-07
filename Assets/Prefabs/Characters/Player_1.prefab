@@ -179,7 +179,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1152896034739334}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 12.6652355, y: -6.177129, z: 0}
+  m_LocalPosition: {x: -12.826488, y: 5.3088036, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_Children:
   - {fileID: 4002026971587998}
@@ -222,9 +222,9 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.1, y: 0}
+  m_Offset: {x: 0.09965229, y: -0.36300468}
   serializedVersion: 2
-  m_Radius: 1.92
+  m_Radius: 1.3573408
 --- !u!95 &95822799548868412
 Animator:
   serializedVersion: 3
@@ -307,13 +307,14 @@ MonoBehaviour:
   mRunSpeed: 5
   mJumpForce: 300
   mGroundCheck: {fileID: 4187727377632288}
-  mGroundLayer:
-    serializedVersion: 2
-    m_Bits: 256
-  mShot: {fileID: 1422982271285172, guid: d80de289a2768914f8b519a2684a9ac7, type: 2}
   mShotSpawns:
   - {fileID: 4604905991283088}
   - {fileID: 4440536106866342}
+  mGroundLayer:
+    serializedVersion: 2
+    m_Bits: 256
+  mFireball: {fileID: 0}
+  mShot: {fileID: 1422982271285172, guid: d80de289a2768914f8b519a2684a9ac7, type: 2}
   mFireRate: 1
 --- !u!212 &212330705777257944
 SpriteRenderer:
