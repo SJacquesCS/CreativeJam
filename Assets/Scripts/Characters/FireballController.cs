@@ -11,6 +11,12 @@ public class FireballController : MonoBehaviour
 
     private float mDelay = 1f;
     private bool mIsShrunk = false;
+    private bool mIsDead = false;
+
+    private Vector2 mScale = new Vector2(1f, 1f);
+    private float mRadius = 0.4f;
+    private float mSpotAngle = 70.0f;
+    private float mParticleSize = 1;
 
 	void Awake()
 	{
@@ -22,9 +28,36 @@ public class FireballController : MonoBehaviour
 
 	void Update ()
 	{
-		Move();
-        Burst();
-        Shrink();
+        if (!mIsDead)
+        {
+            Move();
+            Burst();
+            Shrink();
+        }
+        else
+        {
+            mScale -= new Vector2(0.025f, 0.025f);
+            mRadius -= 0.01f;
+            mSpotAngle -= 1.85f;
+            mParticleSize -= 0.01f;
+
+            if (mScale.x >= 0)
+                transform.GetChild(3).transform.localScale = mScale;
+
+            if (mRadius >= 0)
+                transform.GetComponent<CircleCollider2D>().radius = mRadius;
+
+            if (mSpotAngle >= 0)
+                transform.GetChild(1).GetComponent<Light>().spotAngle = mSpotAngle;
+
+            if (mParticleSize >= 0)
+            {
+                mParticles.startSize = mParticleSize;
+                mBurst.startSize = mParticleSize;
+            }
+            else
+                Destroy(gameObject);
+        }
 	}
 
 	void Move()
@@ -61,20 +94,32 @@ public class FireballController : MonoBehaviour
         {
             if (mIsShrunk)
             {
-                transform.GetChild(3).transform.localScale = new Vector2(1f, 1f);
-                transform.GetComponent<CircleCollider2D>().radius = 0.4f;
-                transform.GetChild(1).GetComponent<Light>().spotAngle = 70f;
-                mParticles.startSize = 1f;
+                mScale = new Vector2(1, 1);
+                mRadius = 0.4f;
+                mSpotAngle = 70;
+                mParticleSize = 1;
             }
             else
             {
-                transform.GetChild(3).transform.localScale = new Vector2(0.5f, 0.5f);
-                transform.GetComponent<CircleCollider2D>().radius = 0.2f;
-                transform.GetChild(1).GetComponent<Light>().spotAngle = 35f;
-                mParticles.startSize = 0.5f;
+                mScale = new Vector2(0.5f, 0.5f);
+                mRadius = 0.2f;
+                mSpotAngle = 35;
+                mParticleSize = 0.5f;
             }
+
+            transform.GetChild(3).transform.localScale = mScale;
+            transform.GetComponent<CircleCollider2D>().radius = mRadius;
+            transform.GetChild(1).GetComponent<Light>().spotAngle = mSpotAngle;
+            mParticles.startSize = mParticleSize;
+            mBurst.startSize = mParticleSize;
 
             mIsShrunk = !mIsShrunk;
         }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Waterfall")
+            mIsDead = true;
     }
 }

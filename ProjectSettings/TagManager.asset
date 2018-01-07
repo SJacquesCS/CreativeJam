@@ -9,6 +9,7 @@ TagManager:
   - Enemy
   - Patrol Collider
   - Fireball
+  - Waterfall
   layers:
   - Default
   - TransparentFX

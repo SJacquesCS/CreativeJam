@@ -5901,7 +5901,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -10405,6 +10405,31 @@ Transform:
   m_PrefabParentObject: {fileID: 4107127789040876, guid: 0bdcef6cf68e80647b941017aa76227d,
     type: 2}
   m_PrefabInternal: {fileID: 1037743441}
+--- !u!61 &614170289
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 614170287}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 6.981038, y: -4.0011578}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1.1827698, y: 5.3744545}
+  m_EdgeRadius: 0
 --- !u!4 &616388864 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4887141078928230, guid: 04a1247d4d6418c408eb006e4a1dccad,
@@ -11580,6 +11605,36 @@ Transform:
   m_PrefabParentObject: {fileID: 4396624146199910, guid: 50a452e9ff628164a80b762d73238c35,
     type: 2}
   m_PrefabInternal: {fileID: 1834226522}
+--- !u!1 &692231066 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1955709586564350, guid: 0bdcef6cf68e80647b941017aa76227d,
+    type: 2}
+  m_PrefabInternal: {fileID: 1354406353}
+--- !u!61 &692231067
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 692231066}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 7.0033216, y: -3.5321717}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1.183094, y: 8.338983}
+  m_EdgeRadius: 0
 --- !u!4 &694108694 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4063854333887210, guid: ed2e17ce90f13a9499a641e77f8bd04b,
@@ -17196,7 +17251,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -22540,6 +22595,10 @@ Prefab:
         type: 2}
       propertyPath: m_Enabled
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1955709586564350, guid: 0bdcef6cf68e80647b941017aa76227d, type: 2}
+      propertyPath: m_TagString
+      value: Waterfall
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 0bdcef6cf68e80647b941017aa76227d, type: 2}
