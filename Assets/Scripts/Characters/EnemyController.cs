@@ -15,6 +15,7 @@ public class EnemyController : MonoBehaviour
 	bool mWalking = true;
 	bool mDead = false;
 	bool mPauseMovement = false;
+	bool mDuringRess = false;
 
 	int mBossHP;
 	bool mBossDeadOnce = false;
@@ -120,6 +121,9 @@ public class EnemyController : MonoBehaviour
 
 	public void DecrementHP()
 	{
+		if (mIsBoss && mDuringRess)
+			return;
+		
 		mHealthPoints--;
 		GetComponent<AudioSource> ().Play ();
 
@@ -146,6 +150,7 @@ public class EnemyController : MonoBehaviour
 
 		GameObject.Find ("DialogueText").GetComponent<Text> ().text = "Merlin ! On approche bientôt de la fin… à nous la liberté !";
 		audioSources[0].Stop();
+		mDuringRess = true;
 		yield return new WaitForSeconds (3f);
 		mAnimator.SetTrigger ("IsRevived");
 		GameObject.Find ("DialogueText").GetComponent<Text> ().text = "Hoho… On dirait que j’ai parlé trop vite… Il nous reste un dernier combat apparemment !";
@@ -153,6 +158,7 @@ public class EnemyController : MonoBehaviour
 		mHealthPoints = mBossHP;
 		yield return new WaitForSeconds (3f);
 		GameObject.Find ("DialogueText").GetComponent<Text> ().text = "";
+		mDuringRess = false;
 		mDead = false;
 	}
 }

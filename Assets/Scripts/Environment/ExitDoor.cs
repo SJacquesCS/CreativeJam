@@ -15,6 +15,7 @@ public class ExitDoor : MonoBehaviour {
             GetComponent<Animator>().enabled = true;
 
             GameObject.Find("GameController").GetComponent<GameController>().IncrementRoomCounter();
+			GetComponent<Collider2D> ().enabled = false;
         }
     }
 }
