@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class EnemyController : MonoBehaviour 
 {
@@ -137,10 +138,18 @@ public class EnemyController : MonoBehaviour
 
 	IEnumerator Revive()
 	{
-		yield return new WaitForSeconds (2f);
+		AudioSource[] audioSources;
+		audioSources = GameObject.Find ("World").GetComponents<AudioSource> ();
+
+		GameObject.Find ("DialogueText").GetComponent<Text> ().text = "Merlin ! On approche bientôt de la fin… à nous la liberté !";
+		audioSources[0].Stop();
+		yield return new WaitForSeconds (3f);
 		mAnimator.SetTrigger ("IsRevived");
+		GameObject.Find ("DialogueText").GetComponent<Text> ().text = "Hoho… On dirait que j’ai parlé trop vite… Il nous reste un dernier combat apparemment !";
+		audioSources[1].Play();
 		mHealthPoints = mBossHP;
 		yield return new WaitForSeconds (1f);
+		GameObject.Find ("DialogueText").GetComponent<Text> ().text = "";
 		mDead = false;
 	}
 }
