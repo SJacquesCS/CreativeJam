@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class EnemyController : MonoBehaviour 
 {
@@ -23,6 +24,7 @@ public class EnemyController : MonoBehaviour
 
 	void Awake ()
 	{
+		Physics2D.IgnoreCollision(GameObject.FindGameObjectWithTag("Fireball").GetComponent<Collider2D>(), GetComponent<Collider2D>());
 		mAnimator = GetComponentInChildren<Animator>();
 		mSpriteChild = GetComponentInChildren<SpriteRenderer>().transform;
 
@@ -102,9 +104,13 @@ public class EnemyController : MonoBehaviour
 		else
 		{
 			Physics2D.IgnoreCollision(GameObject.FindGameObjectWithTag("mage").GetComponent<Collider2D>(), GetComponent<Collider2D>());
-			Physics2D.IgnoreCollision(GameObject.FindGameObjectWithTag("Fireball").GetComponent<Collider2D>(), GetComponent<Collider2D>());
 			Physics2D.IgnoreCollision(GameObject.FindGameObjectWithTag("Projectile").GetComponent<Collider2D>(), GetComponent<Collider2D>());
 			Destroy (gameObject, 2f);
+		}
+
+		if (SceneManager.GetActiveScene ().buildIndex == 2 && gameObject.name == "Knight_2")
+		{
+			GameObject.Find ("Door").GetComponent<Door> ().Open (Vector3.up);
 		}
 	}
 
