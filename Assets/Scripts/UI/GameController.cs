@@ -58,6 +58,8 @@ public class GameController : MonoBehaviour
         yield return new WaitForSeconds(4);
 
         SceneManager.LoadScene(mRoomCompleted);
+
+        RenderSettings.ambientLight = Color.black;
     }
 
     public void SetHealth(int health)
