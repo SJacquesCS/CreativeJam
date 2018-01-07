@@ -66,8 +66,7 @@ public class GameController : MonoBehaviour
 
         if (mPlayerHealth <= 0)
         {
-            mRoomCompleted = 5;
-            StartCoroutine(ChangeScene());
+			SceneManager.LoadScene (5);
         }
 
     }
