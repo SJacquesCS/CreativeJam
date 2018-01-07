@@ -4,11 +4,20 @@ using UnityEngine;
 
 public class LongSpike : MonoBehaviour {
 
+    private bool mHasFallen = false;
+
     public void Fall()
     {
-        GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
+        if (!mHasFallen)
+        {
+            mHasFallen = true;
 
-        StartCoroutine(Vanish());
+            GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
+
+            StartCoroutine(Vanish());
+
+            Physics2D.IgnoreCollision(GetComponent<Collider2D>(), GameObject.FindGameObjectWithTag("mage").GetComponent<Collider2D>());
+        }
     }
 
     IEnumerator Vanish()

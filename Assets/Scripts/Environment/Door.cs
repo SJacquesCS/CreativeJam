@@ -5,6 +5,8 @@ using UnityEngine;
 public class Door : MonoBehaviour {
 
     private bool mOpening = false;
+    private Vector3 mDirection;
+
 
     private Vector3 mDirection;
 

@@ -170,7 +170,6 @@ public class WizardController : MonoBehaviour {
     {
         if ((Input.GetKeyDown(KeyCode.L) && Input.GetKey(KeyCode.Mouse2)) || (Input.GetKey(KeyCode.L) && Input.GetKeyDown(KeyCode.Mouse2)))
         {
-            Debug.Log("SWAP");
             Vector2 fireballPos = mFireball.transform.position;
             mFireball.transform.position = transform.position;
             transform.position = fireballPos;
