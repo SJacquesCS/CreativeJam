@@ -4,13 +4,20 @@ using UnityEngine;
 
 public class HangedMan : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    private float mSilence = 0;
+
+    private void Update()
+    {
+        if (mSilence > 0)
+            mSilence -= 0.01f;
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Fireball" && mSilence <= 0)
+        {
+            mSilence = 2;
+            GetComponent<AudioSource>().Play();
+        }
+    }
 }
