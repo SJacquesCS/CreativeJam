@@ -13,6 +13,7 @@ public class WizardController : MonoBehaviour {
     public LayerMask mGroundLayer;
     public GameObject mFireball;
     public GameObject mShot;
+    public GameObject[] mHP;
     public float mFireRate;
     public int mHealth;
 
@@ -23,6 +24,7 @@ public class WizardController : MonoBehaviour {
     private float mNextFire;
     private bool mFacingRight = false;
     private bool mDead = false;
+    private float mInvisFrames = 0;
 
     private bool mRunning;
     private bool mWalking;
@@ -51,6 +53,9 @@ public class WizardController : MonoBehaviour {
 
         if (!mDead && Input.GetKey(KeyCode.J) && Time.time > mNextFire)
 			StartCoroutine ("Fire");
+
+        if (mInvisFrames > 0)
+            mInvisFrames -= 0.1f;
 	}
 		
 	void FixedUpdate ()
@@ -147,14 +152,22 @@ public class WizardController : MonoBehaviour {
 
     public void Damage()
     {
-        mHealth--;
-        GameObject.Find("GameController").GetComponent<GameController>().SetHealth(mHealth);
-
-        if (mHealth <= 0)
-            Death();
-        else
+        if (mInvisFrames <= 0)
         {
-            GetComponent<Rigidbody2D>().AddForce(new Vector2(200, 575));
+            mInvisFrames = 1;
+            mHealth--;
+            GameObject.Find("GameController").GetComponent<GameController>().SetHealth(mHealth);
+
+            Debug.Log(mHealth);
+
+            Destroy(mHP[mHealth]);
+
+            if (mHealth <= 0)
+                Death();
+            else
+            {
+                GetComponent<Rigidbody2D>().AddForce(new Vector2(200, 575));
+            }
         }
     }
 
