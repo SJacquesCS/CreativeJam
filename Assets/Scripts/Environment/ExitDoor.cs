@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class ExitDoor : MonoBehaviour {
 
+    public GameObject mStageController;
+
     private bool mIsOpen = false;
 
     private void OnTriggerEnter2D(Collider2D collision)

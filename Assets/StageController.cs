@@ -5,10 +5,9 @@ using UnityEngine;
 public class StageController : MonoBehaviour {
 
     public GameObject mImage;
-    public GameObject mGameController;
 
     private bool mIsDead = false;
-    private float mAlpha = 100f;
+    private float mAlpha = 0;
 
     public void died()
     {
@@ -17,7 +16,15 @@ public class StageController : MonoBehaviour {
 
     private void Update()
     {
-        if (mIsDead)
-        mImage.GetComponent<CanvasRenderer>().SetAlpha(mAlpha);
+        if (mIsDead && mAlpha <= 255)
+        {
+            float r = mImage.GetComponent<SpriteRenderer>().color.r;
+            float g = mImage.GetComponent<SpriteRenderer>().color.g;
+            float b = mImage.GetComponent<SpriteRenderer>().color.b;
+
+            Debug.Log(mAlpha);
+
+            mImage.GetComponent<SpriteRenderer>().color = new Color(r, g, b, mAlpha++);
+        }
     }
 }

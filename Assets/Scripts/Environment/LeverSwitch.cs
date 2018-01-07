@@ -14,12 +14,14 @@ public class LeverSwitch : MonoBehaviour {
         {
             mIsTriggered = true;
 
-            mOtherSwitch.GetComponent<LeverSwitch>().setTriggered();
+            if (mOtherSwitch)
+                mOtherSwitch.GetComponent<LeverSwitch>().setTriggered();
 
             transform.Rotate(new Vector3(0, 180));
             transform.position = new Vector3(transform.position.x + 0.75f, transform.position.y);
 
-            mLinkedWaterfall.GetComponent<Waterfall>().Die();
+            if (mLinkedWaterfall)
+                mLinkedWaterfall.GetComponent<Waterfall>().Die();
         }
     }
 
