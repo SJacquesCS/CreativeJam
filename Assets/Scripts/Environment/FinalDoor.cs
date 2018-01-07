@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class FinalDoor : MonoBehaviour {
 
@@ -17,5 +18,16 @@ public class FinalDoor : MonoBehaviour {
     {
 		GetComponent<AudioSource> ().Play ();
         mIsUnlocked = true;
+
+        StartCoroutine(VictoryTransition());
+    }
+
+    IEnumerator VictoryTransition()
+    {
+        yield return new WaitForSeconds(5);
+
+        GameObject.Find("GameController").GetComponent<GameController>().ResetRoomCounter();
+
+        SceneManager.LoadScene(7);
     }
 }
