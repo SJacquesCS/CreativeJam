@@ -4,7 +4,12 @@ using UnityEngine;
 
 public class FireballController : MonoBehaviour
 {
-    public float speed;
+    public float mSpeed;
+
+    public ParticleSystem mParticles;
+    public ParticleSystem mBurst;
+
+    private float mDelay = 1f;
 
 	void Awake()
 	{
@@ -15,15 +20,50 @@ public class FireballController : MonoBehaviour
 
 	void Update ()
 	{
-		Move ();
+		Move();
+        Burst();
+        Shrink();
 	}
 
 	void Move()
 	{
-		Vector3 mouselocation = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        float xDist = mouselocation.x - transform.position.x;
-        float yDist = mouselocation.y - transform.position.y;
+		Vector3 mouseLocation = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        Vector2 distances = new Vector2(mouseLocation.x - transform.position.x, mouseLocation.y - transform.position.y);
 
-        transform.Translate(new Vector3(xDist, yDist) * Time.deltaTime * speed);
+        if (distances.magnitude > 0.5f)
+            GetComponent<Rigidbody2D>().AddForce(distances.normalized * 0.01f);
+
+        GetComponent<Rigidbody2D>().velocity = new Vector2(
+            Mathf.Clamp(GetComponent<Rigidbody2D>().velocity.x, -5f, 5f),
+            Mathf.Clamp(GetComponent<Rigidbody2D>().velocity.y, -5f, 5f)
+        );
+    }
+
+    void Burst()
+    {
+        if (Input.GetKey(KeyCode.Mouse0) && mDelay <= 0f)
+        {
+            mBurst.Play();
+            mDelay = 1f;
+        }
+
+        if (mDelay > 0)
+        {
+            mDelay -= 0.05f;
+        }
+    }
+
+    void Shrink()
+    {
+        if (Input.GetKey(KeyCode.Mouse1))
+        {
+            transform.localScale = new Vector2(0.5f, 0.5f);
+            mParticles.startSize = 0.5f;
+        }
+        else
+        {
+            transform.localScale = new Vector2(1, 1);
+            mParticles.startSize = 1;
+        }
     }
 }

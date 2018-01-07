@@ -6,10 +6,14 @@ public class Torch : MonoBehaviour {
 
     public GameObject mDoor;
 
+    private bool mIsTriggered = false;
+
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (Input.GetKeyDown(KeyCode.Mouse0))
+        if (Input.GetKey(KeyCode.Mouse0) && collision.gameObject.tag == "Fireball" && !mIsTriggered)
         {
+            mIsTriggered = true;
+
             GetComponent<Animator>().enabled = true;
             transform.GetChild(0).GetComponent<Light>().enabled = true;
 
