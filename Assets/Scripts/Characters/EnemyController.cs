@@ -117,6 +117,7 @@ public class EnemyController : MonoBehaviour
 	public void DecrementHP()
 	{
 		mHealthPoints--;
+		GetComponent<AudioSource> ().Play ();
 
 		if (mHealthPoints <= 0)
 			Death ();

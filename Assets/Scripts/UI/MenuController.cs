@@ -20,6 +20,11 @@ public class MenuController : MonoBehaviour
 		SceneManager.LoadScene (1);
 	}
 
+	public void GoToCredit()
+	{
+		SceneManager.LoadScene (4);
+	}
+
 	public void ExitGame()
 	{
 		Application.Quit ();
