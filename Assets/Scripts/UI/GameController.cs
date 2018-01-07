@@ -20,7 +20,7 @@ public class GameController : MonoBehaviour
 
 		if (mRoomCompleted > 0)
 		{
-			if (txtGO && resetBtn) 
+			if (txtGO && resetBtn)
 				txtGO.GetComponent<Text> ().text = "Nombre de salles completée(s): " + mRoomCompleted;
 		} else if (txtGO && resetBtn) 
 		{
@@ -29,18 +29,40 @@ public class GameController : MonoBehaviour
 		}
 	}
 
+    void SwitchRoom()
+    {
+        RenderSettings.ambientLight = Color.white;
+
+        StartCoroutine(FadeToBlack());
+    }
+
 	void Update()
 	{
 
 	}
+
+    void SwitchRoom()
+    {
+
+    }
 
 	public void ResetRoomCounter ()
 	{
 		mRoomCompleted = 0;
 	}
 
-	void IncrementRoomCounter()
+	public void IncrementRoomCounter()
 	{
 		mRoomCompleted++;
+<<<<<<< HEAD
+
+=======
+>>>>>>> e36c43d80e01c2ffcd53e4236df5500f9fa9e9c9
+        SwitchRoom();
 	}
+
+    IEnumerator FadeToBlack()
+    {
+        yield return new WaitForSeconds(5f);
+    }
 }

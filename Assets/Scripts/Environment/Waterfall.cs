@@ -23,7 +23,7 @@ public class Waterfall : MonoBehaviour {
 
     IEnumerator Vanish()
     {
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(5);
 
         Destroy(gameObject);
     }

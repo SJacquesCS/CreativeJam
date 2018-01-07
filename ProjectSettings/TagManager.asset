@@ -11,6 +11,7 @@ TagManager:
   - Fireball
   - Waterfall
   - Projectile
+  - Spike
   layers:
   - Default
   - TransparentFX

@@ -5,17 +5,20 @@ using UnityEngine;
 public class Door : MonoBehaviour {
 
     private bool mOpening = false;
+    private Vector3 mDirection;
+
+
+    private Vector3 mDirection;
 
 	void Update () {
         if (mOpening)
-            transform.Translate(Vector3.up * Time.deltaTime * 2);
+            transform.Translate(mDirection * Time.deltaTime * 2, Space.World);
 	}
 
-    public void Open()
+    public void Open(Vector3 direction)
     {
         mOpening = true;
-
-
+        mDirection = direction;
     }
 
     IEnumerator Vanish()

@@ -29,13 +29,22 @@ public class ProjectileController : MonoBehaviour
 		GetComponent<Rigidbody2D>().velocity = transform.right * mSpeed * mDirection;
 	}
 
-	void OnTriggerEnter2D(Collider2D other)
+	void OnCollisionEnter2D(Collision2D other)
 	{
-		if (other.tag == "Enemy" || other.tag == "Ground")
+		if (other.gameObject.tag == "Enemy" || other.gameObject.tag == "Ground")
 		{
 			Destroy (gameObject, 0.15f);
+<<<<<<< HEAD
+
+			if (other.gameObject.tag == "Enemy")
+				other.gameObject.GetComponent<EnemyController>().Death ();
+=======
 			if (other.tag == "Enemy")
 				other.gameObject.GetComponent<EnemyController>().DecrementHP ();
+>>>>>>> 5559cef110946cb32760809f43bb69ff7bfd7c20
 		}
+
+        if (other.gameObject.tag == "Fireball")
+            Physics2D.IgnoreCollision(GetComponent<Collider2D>(), other.gameObject.GetComponent<Collider2D>());
 	}
 }
