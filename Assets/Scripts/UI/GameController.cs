@@ -34,13 +34,20 @@ public class GameController : MonoBehaviour
 
 	}
 
+    void SwitchRoom()
+    {
+
+    }
+
 	public void ResetRoomCounter ()
 	{
 		mRoomCompleted = 0;
 	}
 
-	void IncrementRoomCounter()
+	public void IncrementRoomCounter()
 	{
 		mRoomCompleted++;
+
+        SwitchRoom();
 	}
 }

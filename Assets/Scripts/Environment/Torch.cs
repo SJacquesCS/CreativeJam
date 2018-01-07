@@ -17,7 +17,8 @@ public class Torch : MonoBehaviour {
             GetComponent<Animator>().enabled = true;
             transform.GetChild(0).GetComponent<Light>().enabled = true;
 
-            mDoor.GetComponent<Door>().Open();
+            if (mDoor)
+                mDoor.GetComponent<Door>().Open(Vector3.up);
         }
     }
 }

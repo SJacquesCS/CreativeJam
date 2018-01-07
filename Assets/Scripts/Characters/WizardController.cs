@@ -14,6 +14,7 @@ public class WizardController : MonoBehaviour {
     public GameObject mFireball;
     public GameObject mShot;
     public float mFireRate;
+    public int mHealth;
 
     private Animator mAnimator;
     private Rigidbody2D mRigidBody2D;
@@ -57,7 +58,6 @@ public class WizardController : MonoBehaviour {
         if (!mDead)
         {
             Move();
-            Interact();
             Swap();
         }
         else
@@ -89,7 +89,7 @@ public class WizardController : MonoBehaviour {
 		{
 			FaceDirection ((Vector2)directionRight);
 			mFacingRight = false;
-			transform.position -= directionLeft * movementSpeed * Time.deltaTime;
+			transform.position -= directionLeft * mRunSpeed * Time.deltaTime;
 			mWalking = true;
 		}
 			
@@ -97,7 +97,7 @@ public class WizardController : MonoBehaviour {
 		{
 			FaceDirection ((Vector2)directionRight);
 			mFacingRight = true;
-			transform.position += directionRight * movementSpeed * Time.deltaTime;
+			transform.position += directionRight * mRunSpeed * Time.deltaTime;
 			mWalking = true;
 		}
 
@@ -145,18 +145,25 @@ public class WizardController : MonoBehaviour {
 		mAnimator.SetBool("IsGrounded", mGrounded);
 	}
 
-	public void Death ()
+    public void Damage()
+    {
+        mHealth--;
+
+        if (mHealth <= 0)
+            Death();
+        else
+        {
+            GetComponent<Rigidbody2D>().AddForce(new Vector2(200, 575));
+        }
+    }
+
+    public void Death()
 	{
 		mAnimator.SetTrigger ("IsDead");
         GetComponent<Rigidbody2D>().AddForce(new Vector2(Random.Range(50, 150), 300));
         GetComponent<Collider2D>().enabled = false;
 		mDead = true;
 		Destroy (gameObject, 4f);
-	}
-
-	void Interact()
-	{
-
 	}
 
     void Swap()
