@@ -9,28 +9,27 @@ public class WizardController : MonoBehaviour {
     public float mJumpForce;
 
 	public Transform mGroundCheck;
-	public LayerMask mGroundLayer;
+    public Transform[] mShotSpawns;
+    public LayerMask mGroundLayer;
+    public GameObject mFireball;
+    public GameObject mShot;
+    public float mFireRate;
 
-    bool mRunning;
-    bool mWalking;
-    bool mGrounded;
-    bool mFalling;
-	bool mFiring;
-	bool mDead = false;
+    private Animator mAnimator;
+    private Rigidbody2D mRigidBody2D;
+    private Transform mSpriteChild;
+    private float kGroundCheckRadius = 0.1f;
+    private float mNextFire;
+    private bool mFacingRight = false;
+    private bool mDead = false;
 
-	bool mFacingRight = false;
-	
-	Animator mAnimator;
-	Rigidbody2D mRigidBody2D;
-    Transform mSpriteChild;
-    float kGroundCheckRadius = 0.1f;
+    private bool mRunning;
+    private bool mWalking;
+    private bool mGrounded;
+    private bool mFalling;
+    private bool mFiring;
 
-	public GameObject mShot;
-	public Transform[] mShotSpawns;
-	public float mFireRate;
-	float mNextFire;
-
-	void Awake ()
+    void Awake ()
 	{
 		mAnimator = GetComponentInChildren<Animator>();
         mRigidBody2D = GetComponent<Rigidbody2D>();
@@ -49,14 +48,18 @@ public class WizardController : MonoBehaviour {
 		CheckFalling ();
 		CheckGrounded ();
 
-		if (Input.GetKey (KeyCode.J) && Time.time > mNextFire)
+        if (!mDead && Input.GetKey(KeyCode.J) && Time.time > mNextFire)
 			StartCoroutine ("Fire");
 	}
 		
 	void FixedUpdate ()
 	{
         if (!mDead)
+        {
             Move();
+            Interact();
+            Swap();
+        }
         else
             transform.Rotate(Vector3.forward * 2);
 		
@@ -155,6 +158,17 @@ public class WizardController : MonoBehaviour {
 	{
 
 	}
+
+    void Swap()
+    {
+        if ((Input.GetKeyDown(KeyCode.L) && Input.GetKey(KeyCode.Mouse2)) || (Input.GetKey(KeyCode.L) && Input.GetKeyDown(KeyCode.Mouse2)))
+        {
+            Debug.Log("SWAP");
+            Vector2 fireballPos = mFireball.transform.position;
+            mFireball.transform.position = transform.position;
+            transform.position = fireballPos;
+        }
+    }
 
 	IEnumerator Fire()
 	{

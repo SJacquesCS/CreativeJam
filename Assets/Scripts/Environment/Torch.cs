@@ -10,7 +10,7 @@ public class Torch : MonoBehaviour {
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (Input.GetKey(KeyCode.Mouse0) && collision.gameObject.tag == "Fireball" && !mIsTriggered)
+        if (Input.GetKey(KeyCode.Mouse0) && collision.gameObject.tag == "Fireball" && !mIsTriggered && !collision.gameObject.GetComponent<FireballController>().checkShrunk())
         {
             mIsTriggered = true;
 

@@ -31,7 +31,8 @@ public class FireballController : MonoBehaviour
         if (!mIsDead)
         {
             Move();
-            Burst();
+            if (!mIsShrunk)
+                Burst();
             Shrink();
         }
         else
@@ -122,4 +123,10 @@ public class FireballController : MonoBehaviour
         if (collision.gameObject.tag == "Waterfall")
             mIsDead = true;
     }
+
+    public bool checkShrunk()
+    {
+        return mIsShrunk;
+    }
+
 }

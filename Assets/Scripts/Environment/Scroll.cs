@@ -8,7 +8,7 @@ public class Scroll : MonoBehaviour {
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "mage")
+        if (collision.gameObject.tag == "mage" || collision.gameObject.tag == "Fireball")
         {
             mLargeScroll.GetComponent<SpriteRenderer>().enabled = true;
             GetComponent<SpriteRenderer>().enabled = false;
