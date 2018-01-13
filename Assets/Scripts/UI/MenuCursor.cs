@@ -5,6 +5,11 @@ using UnityEngine;
 public class MenuCursor : MonoBehaviour
 {
 	public float speed;
+	
+	void Awake ()
+	{
+		Cursor.visible = true;
+	}
 
 	void Update ()
 	{
