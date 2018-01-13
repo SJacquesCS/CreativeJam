@@ -6,11 +6,6 @@ public class MenuCursor : MonoBehaviour
 {
 	public float speed;
 
-	void Awake()
-	{
-		Cursor.visible = false;
-	}
-
 	void Update ()
 	{
 		Move ();

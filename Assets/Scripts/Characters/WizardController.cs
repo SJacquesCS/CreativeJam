@@ -53,28 +53,26 @@ public class WizardController : MonoBehaviour {
 	{
 		CheckFalling ();
 		CheckGrounded ();
-
-        if (!mDead && Input.GetKey(KeyCode.J) && Time.time > mNextFire)
+		
+		if (!mDead)
+		{
+			Move();
+            Swap();
+			
+			if (Input.GetKey(KeyCode.J) && Time.time > mNextFire)
 			StartCoroutine ("Fire");
+		}
+		else
+            transform.Rotate(Vector3.forward * 2);
 
         if (mInvisFrames > 0)
             mInvisFrames -= 0.1f;
-	}
 		
-	void FixedUpdate ()
-	{
-        if (!mDead)
-        {
-            Move();
-            Swap();
-        }
-        else
-            transform.Rotate(Vector3.forward * 2);
 		
 		mAnimator.SetBool("IsWalking", mWalking);
         mAnimator.SetBool("IsRunning", mRunning);
 	}
-
+	
 	void Move ()
 	{
 		float moveLeft = Input.GetAxisRaw("Left");

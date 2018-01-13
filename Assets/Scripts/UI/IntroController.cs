@@ -5,11 +5,6 @@ using UnityEngine.SceneManagement;
 
 public class IntroController : MonoBehaviour {
 
-    void Awake()
-    {
-        Cursor.visible = false;
-    }
-
     public void GoToMenu()
     {
         SceneManager.LoadScene(2);
